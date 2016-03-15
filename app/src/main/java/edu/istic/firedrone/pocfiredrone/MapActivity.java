@@ -36,7 +36,7 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
 
     @Override
     public boolean singleTapConfirmedHelper(GeoPoint p) {
-        //sendDroneToPosition(p);
+        sendDroneToPosition(p);
         return false;
     }
 
@@ -50,7 +50,7 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
 
             @Override
             public void onError(WaspError error) {
-                Toast.makeText(MapActivity.this, "Error" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapActivity.this, "Error WASP " + error.toString() , Toast.LENGTH_SHORT).show();
             }
         });
     }

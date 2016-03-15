@@ -14,7 +14,7 @@ public class RestServiceBuilder {
 
     public static RestService build(Context context){
         RestService service = new Wasp.Builder(context)
-                .setEndpoint("http://lamereabaptiste.com")
+                .setEndpoint("http://46.101.30.252")
                 .trustCertificates()                         // Optional
                 .enableCookies(CookiePolicy.ACCEPT_ALL)      // Optional
                 .build()
