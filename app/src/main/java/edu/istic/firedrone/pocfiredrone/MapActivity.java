@@ -1,11 +1,15 @@
 package edu.istic.firedrone.pocfiredrone;
 
+import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import org.osmdroid.api.IMapController;
@@ -22,6 +26,7 @@ import java.util.List;
 public class MapActivity extends AppCompatActivity implements MapEventsReceiver {
 
     MapView map;
+    int touchX, touchY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,22 +42,34 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
     }
 
     @Override
-    public boolean longPressHelper(GeoPoint p) {
-        PopupMenu popup = new PopupMenu(MapActivity.this, map, Gravity.CENTER);
-        popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
-        //registering popup with OnMenuItemClickListener
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(MapActivity.this, "You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
+    public boolean onTouchEvent(MotionEvent event) {
+        touchX = (int)event.getX();
+        touchY = (int)event.getY();
+        Toast.makeText(MapActivity.this, "X " + touchX + "  Y " + touchY, Toast.LENGTH_SHORT).show();
 
-        popup.show();//showing popup menu
+
+        return false;
+    }
+
+    @Override
+    public boolean longPressHelper(GeoPoint p) {
+        showAddPointPopup();
 
         //putTruck(p);
         //Toast.makeText(this, "Tap on (" + p.getLatitude() + "," + p.getLongitude() + ")", Toast.LENGTH_SHORT).show();
         return true;
+    }
+
+    private void showAddPointPopup() {
+        LayoutInflater inflater = (LayoutInflater)
+                this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        PopupWindow pw = new PopupWindow(
+                inflater.inflate(R.layout.popup_window, null, false),
+                400,
+                400,
+                true);
+        // The code below assumes that the root container has an id called 'main'
+        pw.showAtLocation(this.findViewById(R.id.map_layout), Gravity.CENTER, touchX, touchY);
     }
 
     protected void putTruck(GeoPoint p) {
