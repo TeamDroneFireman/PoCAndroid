@@ -8,7 +8,7 @@ import com.orhanobut.wasp.http.POST;
 import java.util.List;
 
 import edu.istic.firedrone.pocfiredrone.restclient.requests.CommandDiscover;
-import edu.istic.firedrone.pocfiredrone.restclient.responses.GetDronesResponse;
+import edu.istic.firedrone.pocfiredrone.restclient.responses.DroneGetResponse;
 
 /**
  * Created by maxime on 15/03/2016.
@@ -18,5 +18,5 @@ public interface RestService {
     void sendDrone(@Body CommandDiscover body, Callback callback);
 
     @GET("/drone")
-    List<GetDronesResponse> getDrones(Callback callback);
+    List<DroneGetResponse> getDrones(Callback callback);
 }

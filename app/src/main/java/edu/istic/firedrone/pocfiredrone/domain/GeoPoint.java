@@ -1,11 +1,11 @@
-package edu.istic.firedrone.pocfiredrone.restclient.requests;
+package edu.istic.firedrone.pocfiredrone.domain;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by btessiau on 18/03/16.
  */
-public class GeoPosition {
+public class GeoPoint {
 
     @SerializedName("lat")
     private double lat;
@@ -13,7 +13,7 @@ public class GeoPosition {
     @SerializedName("lng")
     private double lng;
 
-    public GeoPosition() {
+    public GeoPoint() {
     }
 
     public double getLat() {
