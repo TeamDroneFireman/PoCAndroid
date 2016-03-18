@@ -41,16 +41,18 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
     }
 
     protected void sendDroneToPosition(GeoPoint p) {
-        restService.sendDrone(new SendDroneBody(p.getLatitude(), p.getLongitude()), new Callback<String>(){
+        restService.sendDrone(new SendDroneBody(p.getLatitude(), p.getLongitude()), new Callback<String>() {
 
             @Override
             public void onSuccess(Response response, String text) {
-                Toast.makeText(MapActivity.this, "R: " + text , Toast.LENGTH_SHORT).show();
+                if (response.getStatusCode() == 200) {
+                    Toast.makeText(MapActivity.this, "Position sent to server", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onError(WaspError error) {
-                Toast.makeText(MapActivity.this, "Error WASP " + error.toString() , Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapActivity.this, "Error when sending position to server", Toast.LENGTH_SHORT).show();
             }
         });
     }
