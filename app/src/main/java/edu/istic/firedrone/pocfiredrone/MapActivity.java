@@ -17,7 +17,7 @@ import org.osmdroid.views.MapView;
 
 import edu.istic.firedrone.pocfiredrone.restclient.RestService;
 import edu.istic.firedrone.pocfiredrone.restclient.RestServiceBuilder;
-import edu.istic.firedrone.pocfiredrone.restclient.requests.SendDroneBody;
+import edu.istic.firedrone.pocfiredrone.restclient.requests.CommandDiscover;
 
 public class MapActivity extends AppCompatActivity implements MapEventsReceiver {
 
@@ -41,7 +41,7 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
     }
 
     protected void sendDroneToPosition(GeoPoint p) {
-        restService.sendDrone(new SendDroneBody(p.getLatitude(), p.getLongitude()), new Callback<String>() {
+        restService.sendDrone(new CommandDiscover(p.getLatitude(), p.getLongitude()), new Callback<String>() {
 
             @Override
             public void onSuccess(Response response, String text) {

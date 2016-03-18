@@ -5,21 +5,12 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by maxime on 15/03/2016.
  */
-public class SendDroneBody {
-    private final String commandkey = "DISCOVER";
-
+public abstract class Command {
     @SerializedName("key")
     protected String key;
 
     @SerializedName("geoPoint")
     GeoPosition geoPosition;
-
-    public SendDroneBody(double longitude, double latitude) {
-        this.key = commandkey;
-        this.geoPosition = new GeoPosition();
-        this.geoPosition.setLng(longitude);
-        this.geoPosition.setLat(latitude);
-    }
 
     public GeoPosition getGeoPosition() {
         return geoPosition;
@@ -27,10 +18,6 @@ public class SendDroneBody {
 
     public void setGeoPosition(GeoPosition geoPosition) {
         this.geoPosition = geoPosition;
-    }
-
-    public String getCommandkey() {
-        return commandkey;
     }
 
     public String getKey() {
