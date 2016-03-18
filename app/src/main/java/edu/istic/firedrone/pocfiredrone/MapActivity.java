@@ -1,7 +1,7 @@
 package edu.istic.firedrone.pocfiredrone;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.orhanobut.wasp.Callback;
@@ -17,6 +17,7 @@ import org.osmdroid.views.MapView;
 
 import edu.istic.firedrone.pocfiredrone.restclient.RestService;
 import edu.istic.firedrone.pocfiredrone.restclient.RestServiceBuilder;
+import edu.istic.firedrone.pocfiredrone.restclient.requests.Command;
 import edu.istic.firedrone.pocfiredrone.restclient.requests.CommandDiscover;
 
 public class MapActivity extends AppCompatActivity implements MapEventsReceiver {
@@ -41,7 +42,12 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
     }
 
     protected void sendDroneToPosition(GeoPoint p) {
-        restService.sendDrone(new CommandDiscover(p.getLatitude(), p.getLongitude()), new Callback<String>() {
+        Command command = new CommandDiscover();
+        edu.istic.firedrone.pocfiredrone.domain.GeoPoint geoPoint = new edu.istic.firedrone.pocfiredrone.domain.GeoPoint();
+        geoPoint.setLng(p.getLongitude());
+        geoPoint.setLat(p.getLatitude());
+        command.setGeoPoint(geoPoint);
+        restService.sendDrone(command, new Callback<String>() {
 
             @Override
             public void onSuccess(Response response, String text) {
