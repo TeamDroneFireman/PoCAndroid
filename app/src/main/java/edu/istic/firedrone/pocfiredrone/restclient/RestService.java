@@ -2,9 +2,12 @@ package edu.istic.firedrone.pocfiredrone.restclient;
 
 import com.orhanobut.wasp.Callback;
 import com.orhanobut.wasp.http.Body;
+import com.orhanobut.wasp.http.GET;
 import com.orhanobut.wasp.http.POST;
-import com.orhanobut.wasp.http.Path;
 
+import java.util.List;
+
+import edu.istic.firedrone.pocfiredrone.domain.Drone;
 import edu.istic.firedrone.pocfiredrone.restclient.requests.SendDroneBody;
 
 /**
@@ -13,4 +16,7 @@ import edu.istic.firedrone.pocfiredrone.restclient.requests.SendDroneBody;
 public interface RestService {
     @POST("/senddrone")
     void sendDrone(@Body SendDroneBody body, Callback callback);
+
+    @GET("/getdrones")
+    List<Drone> getDrones(Callback callback);
 }

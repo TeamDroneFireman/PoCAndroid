@@ -73,7 +73,7 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
         map.setMultiTouchControls(true);                // Enable pinch to zoom, rotate...
 
         IMapController mapController = map.getController(); // Create a map controller
-        GeoPoint startPoint = new GeoPoint(48.8583, 2.2944);// Create a point
+        GeoPoint startPoint = new GeoPoint(48.115251, -1.638668);// Create a point
         mapController.setCenter(startPoint);                // Put the map center on the point
 
         mapController.setZoom(18);                          // Set an initial amount of zoom, else we will see an "earth mosaic"
