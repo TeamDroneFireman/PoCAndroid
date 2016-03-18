@@ -1,10 +1,16 @@
 package edu.istic.firedrone.pocfiredrone.restclient.requests;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by btessiau on 18/03/16.
  */
 public class GeoPosition {
+
+    @SerializedName("lat")
     private double lat;
+
+    @SerializedName("lng")
     private double lng;
 
     public GeoPosition() {

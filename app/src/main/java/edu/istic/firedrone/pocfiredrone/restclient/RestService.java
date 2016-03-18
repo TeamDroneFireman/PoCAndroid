@@ -14,9 +14,9 @@ import edu.istic.firedrone.pocfiredrone.restclient.responses.GetDronesResponse;
  * Created by maxime on 15/03/2016.
  */
 public interface RestService {
-    @POST("/senddrone")
+    @POST("/drone")
     void sendDrone(@Body SendDroneBody body, Callback callback);
 
-    @GET("/getdrones")
+    @GET("/command")
     List<GetDronesResponse> getDrones(Callback callback);
 }
