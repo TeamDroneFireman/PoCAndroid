@@ -2,6 +2,8 @@ package edu.istic.firedrone.pocfiredrone.domain;
 
 /**
  * Created by btessiau on 18/03/16.
+ *
+ * Represents a drone
  */
 public class Drone {
     protected double longitude;

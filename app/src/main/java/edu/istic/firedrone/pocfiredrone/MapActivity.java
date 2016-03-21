@@ -2,6 +2,8 @@ package edu.istic.firedrone.pocfiredrone;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.orhanobut.wasp.Callback;
@@ -21,7 +23,11 @@ import edu.istic.firedrone.pocfiredrone.restclient.requests.SendDroneBody;
 
 public class MapActivity extends AppCompatActivity implements MapEventsReceiver {
 
+    // UI Components
     MapView map;
+    Button btSimPush;
+
+    // Rest services
     RestService restService;
 
     @Override
@@ -30,6 +36,9 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
         setContentView(R.layout.activity_map);
 
         restService = RestServiceBuilder.build(this);
+        btSimPush = (Button) findViewById(R.id.bt_sim_push);
+
+        btSimPush.setOnClickListener(new BtSimPushOnClickListener());
 
         initializeMap();
     }
@@ -84,5 +93,13 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
 
         map.invalidate(); // We need that to make OSMDroid to reload the map
 
+    }
+
+    private class BtSimPushOnClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(MapActivity.this, "Simulate push", Toast.LENGTH_SHORT).show();
+        }
     }
 }
