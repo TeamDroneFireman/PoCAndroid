@@ -6,27 +6,37 @@ package edu.istic.firedrone.pocfiredrone.domain;
  * Represents a drone
  */
 public class Drone {
-    protected double longitude;
-    protected double latitude;
+    private Long id;
+    private GeoPoint geoPoint;
+    private String status;
 
-    public Drone(double longitude, double latitude) {
-        this.longitude = longitude;
-        this.latitude = latitude;
+    public Drone(Long id,GeoPoint geoPoint,String status) {
+        this.id = id;
+        this.geoPoint = geoPoint;
+        this.status = status;
     }
 
-    public double getLongitude() {
-        return longitude;
+    public Long getId() {
+        return id;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public double getLatitude() {
-        return latitude;
+    public GeoPoint getGeoPoint() {
+        return geoPoint;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
+    public void setGeoPoint(GeoPoint geoPoint) {
+        this.geoPoint = geoPoint;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

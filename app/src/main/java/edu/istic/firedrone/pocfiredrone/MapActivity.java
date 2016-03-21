@@ -1,9 +1,9 @@
 package edu.istic.firedrone.pocfiredrone;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.orhanobut.wasp.Callback;
@@ -17,10 +17,17 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.istic.firedrone.pocfiredrone.CommandPattern.ICommand;
+import edu.istic.firedrone.pocfiredrone.push.PushRouter;
+import edu.istic.firedrone.pocfiredrone.push.handler.DroneTopicHandler;
 import edu.istic.firedrone.pocfiredrone.restclient.RestService;
 import edu.istic.firedrone.pocfiredrone.restclient.RestServiceBuilder;
 import edu.istic.firedrone.pocfiredrone.restclient.requests.Command;
 import edu.istic.firedrone.pocfiredrone.restclient.requests.CommandDiscover;
+import edu.istic.firedrone.pocfiredrone.restclient.responses.DroneGetResponse;
 
 public class MapActivity extends AppCompatActivity implements MapEventsReceiver {
 
@@ -31,6 +38,9 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
     // Rest services
     RestService restService;
 
+    // List des drones à afficher
+    List<DroneGetResponse> droneGetResponseList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +50,8 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
         btSimPush = (Button) findViewById(R.id.bt_sim_push);
 
         btSimPush.setOnClickListener(new BtSimPushOnClickListener());
+
+        droneGetResponseList = new ArrayList<>();
 
         initializeMap();
     }
@@ -70,6 +82,29 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
                 Toast.makeText(MapActivity.this, "Error when sending position to server", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    protected void getDrones() {
+        //TODO à débug
+        /*
+        List<DroneGetResponse> droneGetResponses = restService.getDrones(new Callback<String>() {
+                 @Override
+                 public void onSuccess(Response response, String text) {
+                     if (response.getStatusCode() == 200) {
+                         Toast.makeText(MapActivity.this, "Drones receive from server", Toast.LENGTH_SHORT).show();
+                     }
+                 }
+
+                 @Override
+                 public void onError(WaspError error) {
+                     Toast.makeText(MapActivity.this, "Error when geting drones from server", Toast.LENGTH_SHORT).show();
+                 }
+             }
+        );
+
+        if (droneGetResponses != null) {
+            this.droneGetResponseList = droneGetResponses;
+        }*/
     }
 
     @Override
@@ -106,6 +141,26 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
         @Override
         public void onClick(View v) {
             Toast.makeText(MapActivity.this, "Simulate push", Toast.LENGTH_SHORT).show();
+            try {
+                DroneTopicHandler.commandToDo = new CommandToDoImpl(MapActivity.this);
+                PushRouter.onMessageReceived("/drone/refresh",null);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private class CommandToDoImpl implements ICommand {
+        MapActivity mapActivity;
+
+        private CommandToDoImpl(MapActivity mapActivity) {
+            this.mapActivity = mapActivity;
+        }
+
+        @Override
+        public void execute() {
+            this.mapActivity.getDrones();
         }
     }
 }

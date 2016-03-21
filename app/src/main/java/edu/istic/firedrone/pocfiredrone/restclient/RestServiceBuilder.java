@@ -22,7 +22,7 @@ public class RestServiceBuilder {
      */
     public static RestService build(Context context){
         RestService service = new Wasp.Builder(context)
-                .setEndpoint("http://46.101.30.252")
+                .setEndpoint("http://148.60.11.176:8081")
                 .trustCertificates()                         // Optional
                 .enableCookies(CookiePolicy.ACCEPT_ALL)      // Optional
                 .build()
