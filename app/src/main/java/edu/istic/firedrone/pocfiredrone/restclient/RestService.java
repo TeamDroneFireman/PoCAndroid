@@ -17,6 +17,6 @@ public interface RestService {
     @POST("/command")
     void sendDrone(@Body Command body, Callback callback);
 
-    @GET("/drone")
+    @GET("/drones")
     List<DroneGetResponse> getDrones(Callback callback);
 }
