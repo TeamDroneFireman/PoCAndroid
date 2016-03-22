@@ -40,9 +40,6 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
     // Rest services
     RestService restService;
 
-    // List des drones à afficher
-    List<DroneGetResponse> droneGetResponseList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +69,7 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
     @Override
     public boolean singleTapConfirmedHelper(GeoPoint p) {
         sendDroneToPosition(p);
-        return false;
+        return true;
     }
 
     /**
