@@ -94,12 +94,12 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
         // Run the request
         restService.sendDrone(command).enqueue(new RestCallback<Void>() {
             @Override
-            public void onError(Call<Void> call) {
-                Toast.makeText(MapActivity.this, "An issue happened", Toast.LENGTH_SHORT).show();
+            public void onError() {
+                Toast.makeText(MapActivity.this, "An issue happened while sending position to server", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onSuccess(Call<Void> call, Response<Void> response) {
+            public void onSuccess() {
                 Toast.makeText(MapActivity.this, "Position sent to server", Toast.LENGTH_SHORT).show();
             }
         });
@@ -109,14 +109,14 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
 
         restService.getDrones().enqueue(new RestCallback<List<DroneGetResponse>>() {
             @Override
-            public void onError(Call<List<DroneGetResponse>> call) {
-                Toast.makeText(MapActivity.this, "error", Toast.LENGTH_SHORT).show();
+            public void onError() {
+                Toast.makeText(MapActivity.this, "Error while loading drones", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
-            public void onSuccess(Call<List<DroneGetResponse>> call, Response<List<DroneGetResponse>> response) {
-                Toast.makeText(MapActivity.this, "loaded", Toast.LENGTH_SHORT).show();
+            public void onSuccess() {
+                Toast.makeText(MapActivity.this, "Drones has been loaded", Toast.LENGTH_SHORT).show();
 
                 // Display those drones
                 List<Drone> dronesToDisplay = new ArrayList<Drone>();

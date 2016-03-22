@@ -9,20 +9,30 @@ import retrofit2.Response;
  */
 public abstract class RestCallback<T> implements Callback<T> {
 
+    protected Call<T> call = null;
+    protected Throwable throwable = null;
+    protected Response<T> response = null;
+
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
+        this.call = call;
+        this.response = response;
+
         if(response.isSuccessful()) {
-            onSuccess(call, response);
+            onSuccess();
         } else {
-            onError(call);
+            onError();
         }
     }
 
     @Override
     public void onFailure(Call<T> call, Throwable t) {
-        onError(call);
+        this.call = call;
+        this.throwable = t;
+
+        onError();
     }
 
-    public abstract void onError(Call<T> call);
-    public abstract void onSuccess(Call<T> call, Response<T> response);
+    public abstract void onError();
+    public abstract void onSuccess();
 }
