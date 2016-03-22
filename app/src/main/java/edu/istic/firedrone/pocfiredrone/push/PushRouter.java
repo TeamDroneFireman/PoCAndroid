@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import edu.istic.firedrone.pocfiredrone.exception.PushHandlingException;
-import edu.istic.firedrone.pocfiredrone.push.handler.DroneTopicHandlerI;
+import edu.istic.firedrone.pocfiredrone.push.handler.DroneTopicHandler;
 import edu.istic.firedrone.pocfiredrone.push.handler.IPushTopicHandler;
 
 /**
@@ -25,8 +25,8 @@ public class PushRouter {
         IPushTopicHandler handler = null;
 
         // Route handling
-        if (from.startsWith(DroneTopicHandlerI.MATCHING_TOPIC)) {
-            handler = new DroneTopicHandlerI();
+        if (from.startsWith(DroneTopicHandler.MATCHING_TOPIC)) {
+            handler = new DroneTopicHandler();
         } else {
             throw new PushHandlingException(from);
         }

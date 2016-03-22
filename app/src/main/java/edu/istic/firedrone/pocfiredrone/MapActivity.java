@@ -21,7 +21,7 @@ import java.util.List;
 import edu.istic.firedrone.pocfiredrone.command.ICommand;
 import edu.istic.firedrone.pocfiredrone.domain.Drone;
 import edu.istic.firedrone.pocfiredrone.push.PushRouter;
-import edu.istic.firedrone.pocfiredrone.push.handler.DroneTopicHandlerI;
+import edu.istic.firedrone.pocfiredrone.push.handler.DroneTopicHandler;
 import edu.istic.firedrone.pocfiredrone.restclient.RestManager;
 import edu.istic.firedrone.pocfiredrone.restclient.RestService;
 import edu.istic.firedrone.pocfiredrone.restclient.callbacks.RestCallback;
@@ -29,7 +29,6 @@ import edu.istic.firedrone.pocfiredrone.restclient.requests.command.Command;
 import edu.istic.firedrone.pocfiredrone.restclient.requests.command.CommandDiscover;
 import edu.istic.firedrone.pocfiredrone.restclient.responses.DroneGetResponse;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MapActivity extends AppCompatActivity implements MapEventsReceiver {
@@ -180,7 +179,7 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
         public void onClick(View v) {
             Toast.makeText(MapActivity.this, "Simulate push", Toast.LENGTH_SHORT).show();
             try {
-                DroneTopicHandlerI.commandToDo = new CommandToDoImpl(MapActivity.this);
+                DroneTopicHandler.commandToDo = new CommandToDoImpl(MapActivity.this);
                 PushRouter.onMessageReceived("/drone/refresh",null);
             }
             catch (Exception e) {

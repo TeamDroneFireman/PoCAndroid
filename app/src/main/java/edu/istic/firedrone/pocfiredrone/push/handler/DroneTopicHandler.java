@@ -7,8 +7,8 @@ import edu.istic.firedrone.pocfiredrone.command.ICommand;
 /**
  * Created by maxime on 18/03/2016.
  */
-public class DroneTopicHandlerI implements IPushTopicHandler {
-    public static String MATCHING_TOPIC = "/topic/drone";
+public class DroneTopicHandler implements IPushTopicHandler {
+    public static String MATCHING_TOPIC = "/drone";
 
     public static ICommand commandToDo;
 
