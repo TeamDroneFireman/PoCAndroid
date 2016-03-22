@@ -3,6 +3,7 @@ package edu.istic.firedrone.pocfiredrone.push;
 import android.os.Bundle;
 import android.util.Log;
 
+import edu.istic.firedrone.pocfiredrone.domain.Drone;
 import edu.istic.firedrone.pocfiredrone.exception.PushHandlingException;
 import edu.istic.firedrone.pocfiredrone.push.handler.DroneTopicHandler;
 import edu.istic.firedrone.pocfiredrone.push.handler.PushTopicHandler;
@@ -25,7 +26,7 @@ public class PushRouter {
         PushTopicHandler handler = null;
 
         // Route handling
-        if (from.startsWith("/drone/")) {
+        if (from.startsWith(DroneTopicHandler.MATCHING_TOPIC)) {
             handler = new DroneTopicHandler();
         } else {
             throw new PushHandlingException(from);
