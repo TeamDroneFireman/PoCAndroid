@@ -116,6 +116,7 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
 
             @Override
             public void onSuccess() {
+
                 Toast.makeText(MapActivity.this, "Drones has been loaded", Toast.LENGTH_SHORT).show();
 
                 // Display those drones
@@ -130,6 +131,7 @@ public class MapActivity extends AppCompatActivity implements MapEventsReceiver 
     }
 
     protected void setDronesOnMap(List<Drone> drones) {
+        map.getOverlays().clear();
         for(Drone d : drones) {
             Marker droneMarker = new Marker(map);
 
