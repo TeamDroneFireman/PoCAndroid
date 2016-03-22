@@ -8,27 +8,27 @@ import com.google.gson.annotations.SerializedName;
 public class GeoPoint {
 
     @SerializedName("lat")
-    private double lat;
+    private double latitude;
 
     @SerializedName("lng")
-    private double lng;
+    private double longitude;
 
     public GeoPoint() {
     }
 
-    public double getLat() {
-        return lat;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setLat(double lat) {
-        this.lat = lat;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
-    public double getLng() {
-        return lng;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setLng(double lng) {
-        this.lng = lng;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }

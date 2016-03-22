@@ -1,4 +1,4 @@
-package edu.istic.firedrone.pocfiredrone.CommandPattern;
+package edu.istic.firedrone.pocfiredrone.command;
 
 /**
  * Created by btessiau on 21/03/16.

@@ -1,4 +1,4 @@
-package edu.istic.firedrone.pocfiredrone.restclient.requests;
+package edu.istic.firedrone.pocfiredrone.restclient.requests.command;
 
 import com.google.gson.annotations.SerializedName;
 

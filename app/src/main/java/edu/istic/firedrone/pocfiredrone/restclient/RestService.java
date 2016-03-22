@@ -1,22 +1,21 @@
 package edu.istic.firedrone.pocfiredrone.restclient;
 
-import com.orhanobut.wasp.Callback;
-import com.orhanobut.wasp.http.Body;
-import com.orhanobut.wasp.http.GET;
-import com.orhanobut.wasp.http.POST;
-
 import java.util.List;
 
-import edu.istic.firedrone.pocfiredrone.restclient.requests.Command;
+import edu.istic.firedrone.pocfiredrone.restclient.requests.command.Command;
 import edu.istic.firedrone.pocfiredrone.restclient.responses.DroneGetResponse;
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 /**
  * Created by maxime on 15/03/2016.
  */
 public interface RestService {
-    @POST("/command")
-    void sendDrone(@Body Command body, Callback callback);
+    @POST("commands/")
+    Call<Void> sendDrone(@Body Command body);
 
-    @GET("/drones")
-    List<DroneGetResponse> getDrones(Callback callback);
+    @GET("drones/")
+    Call<List<DroneGetResponse>> getDrones();
 }

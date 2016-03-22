@@ -7,7 +7,7 @@ import android.os.Bundle;
  *
  * Represents a push handler
  */
-public interface PushTopicHandler {
+public interface IPushTopicHandler {
 
     /**
      * Handles a push

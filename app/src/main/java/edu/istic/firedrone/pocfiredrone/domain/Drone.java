@@ -6,21 +6,18 @@ package edu.istic.firedrone.pocfiredrone.domain;
  * Represents a drone
  */
 public class Drone {
-    private Long id;
+    private String id;
     private GeoPoint geoPoint;
     private String status;
 
-    public Drone(Long id,GeoPoint geoPoint,String status) {
-        this.id = id;
-        this.geoPoint = geoPoint;
-        this.status = status;
+    public Drone() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -1,4 +1,4 @@
-package edu.istic.firedrone.pocfiredrone.restclient.requests;
+package edu.istic.firedrone.pocfiredrone.restclient.requests.command;
 
 /**
  * Created by maxime on 15/03/2016.

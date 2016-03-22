@@ -3,10 +3,9 @@ package edu.istic.firedrone.pocfiredrone.push;
 import android.os.Bundle;
 import android.util.Log;
 
-import edu.istic.firedrone.pocfiredrone.domain.Drone;
 import edu.istic.firedrone.pocfiredrone.exception.PushHandlingException;
-import edu.istic.firedrone.pocfiredrone.push.handler.DroneTopicHandler;
-import edu.istic.firedrone.pocfiredrone.push.handler.PushTopicHandler;
+import edu.istic.firedrone.pocfiredrone.push.handler.DroneTopicHandlerI;
+import edu.istic.firedrone.pocfiredrone.push.handler.IPushTopicHandler;
 
 /**
  * Created by mlebastard on 15/03/16.
@@ -23,11 +22,11 @@ public class PushRouter {
         Log.d(TAG, "From: " + from);
 
         // Initialize handler
-        PushTopicHandler handler = null;
+        IPushTopicHandler handler = null;
 
         // Route handling
-        if (from.startsWith(DroneTopicHandler.MATCHING_TOPIC)) {
-            handler = new DroneTopicHandler();
+        if (from.startsWith(DroneTopicHandlerI.MATCHING_TOPIC)) {
+            handler = new DroneTopicHandlerI();
         } else {
             throw new PushHandlingException(from);
         }
